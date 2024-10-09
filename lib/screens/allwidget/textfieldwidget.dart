@@ -22,7 +22,7 @@ class _Textfieldwidget extends State<Textfieldwidget> {
   void navigateToPage(String page) {
     switch (page) {
       case 'Textfieldwidget':
-        Navigator.push(context,
+        Navigator.pushReplacement(context,
             MaterialPageRoute(builder: (context) => const Textfieldwidget()));
         break;
       case 'Textfieldwidget2':
@@ -106,6 +106,7 @@ class _Textfieldwidget extends State<Textfieldwidget> {
                             Icons.list,
                             color: Colors.deepOrange,
                           ),
+                          underline: const SizedBox(),
                           iconSize: 50,
                           // hint: const Text("Select A Page"),
                           value: selectedValue,
