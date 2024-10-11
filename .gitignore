@@ -41,3 +41,18 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+
+# Ignore the FVM directory
+.fvm/
+
+# Optionally ignore the Flutter SDK installed by FVM
+.fvm/flutter_sdk/
+
+# Ignore the version files (version_lock.json keeps track of the version in use)
+.fvm/.version
+
+
+# Ignore FVM directory, but keep config.json
+.fvm/
+!.fvm/config.json

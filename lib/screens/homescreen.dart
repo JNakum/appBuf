@@ -1,5 +1,7 @@
 import 'package:appbuf/screens/allwidget/textfieldwidget.dart';
+// import 'package:appbuf/screens/allwidget/textfieldwidget2.dart';
 import 'package:appbuf/screens/allwidget/textwidget.dart';
+import 'package:appbuf/screens/customDropdown/customdropdown.dart';
 import 'package:flutter/material.dart';
 
 class Homescreen extends StatefulWidget {
@@ -10,6 +12,23 @@ class Homescreen extends StatefulWidget {
 }
 
 class _HomescreenState extends State<Homescreen> {
+  // DropDown
+  String? selectedValue;
+
+  // void navigateToPage(String page) {
+  //   switch (page) {
+  //     case 'Textfieldwidget':
+  //       Navigator.push(context,
+  //           MaterialPageRoute(builder: (context) => const Textfieldwidget()));
+  //       break;
+  //     case 'Textfieldwidget2':
+  //       Navigator.push(context,
+  //           MaterialPageRoute(builder: (context) => const Textfieldwidget2()));
+  //       break;
+  //     // Add more cases if you have additional pages
+  //   }
+  // }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,6 +39,17 @@ class _HomescreenState extends State<Homescreen> {
             fontFamily: "FontMain",
           ),
         ),
+        actions: [
+          CustomDropdown(
+            selectedValue: selectedValue,
+            onChanged: (String? newValue) {
+              setState(() {
+                selectedValue = newValue;
+                navigateToPage(context, newValue!);
+              });
+            },
+          ),
+        ],
       ),
 
       // side Drawer Navigation Page Route

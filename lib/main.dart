@@ -15,6 +15,9 @@ class MyApp extends StatelessWidget {
       title: 'AppBuf',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        textSelectionTheme: const TextSelectionThemeData(
+          selectionColor: Colors.pinkAccent,
+        ),
       ),
       home: const Splashscreen(), // HomeScreen ko call kar rahe hain
     );

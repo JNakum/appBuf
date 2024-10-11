@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:appbuf/screens/customDialog/dialogutils.dart';
 
 class Textwidget extends StatefulWidget {
   const Textwidget({super.key});
@@ -37,28 +38,28 @@ class _Textwidget extends State<Textwidget>
     super.dispose();
   }
 
-  void _showTextProperties(String textProperties) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text("Text Properties"),
-          content: Text(
-            textProperties,
-            style: const TextStyle(color: Color.fromARGB(255, 41, 154, 0)),
-          ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: const Text("Close"),
-            ),
-          ],
-        );
-      },
-    );
-  }
+  // void _showTextProperties(String textProperties) {
+  //   showDialog(
+  //     context: context,
+  //     builder: (BuildContext context) {
+  //       return AlertDialog(
+  //         title: const Text("Text Properties"),
+  //         content: Text(
+  //           textProperties,
+  //           style: const TextStyle(color: Color.fromARGB(255, 41, 154, 0)),
+  //         ),
+  //         actions: [
+  //           TextButton(
+  //             onPressed: () {
+  //               Navigator.of(context).pop();
+  //             },
+  //             child: const Text("Close"),
+  //           ),
+  //         ],
+  //       );
+  //     },
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -102,7 +103,7 @@ class _Textwidget extends State<Textwidget>
                       const SizedBox(width: 5),
                       GestureDetector(
                         onTap: () {
-                          _showTextProperties('''
+                          DialogUtils.showTextProperties(context, '''
                             Text(
                               "Text Widgets...!",
                               style: TextStyle(
@@ -152,7 +153,7 @@ class _Textwidget extends State<Textwidget>
                       const SizedBox(width: 5),
                       GestureDetector(
                         onTap: () {
-                          _showTextProperties('''
+                          DialogUtils.showTextProperties(context, '''
                             Text(
                               'Text Widgets Max Line 2',
                               maxLines: 2,
@@ -195,7 +196,7 @@ class _Textwidget extends State<Textwidget>
                       const SizedBox(width: 15),
                       GestureDetector(
                         onTap: () {
-                          _showTextProperties('''
+                          DialogUtils.showTextProperties(context, '''
                             Text(
                               'Text Show In (Right To Left...!) Demo',
                               textDirection: TextDirection.rtl,
@@ -233,7 +234,7 @@ class _Textwidget extends State<Textwidget>
                       const SizedBox(width: 15),
                       GestureDetector(
                         onTap: () {
-                          _showTextProperties('''
+                          DialogUtils.showTextProperties(context, '''
                             Text(
                               'This is a long text',
                               textWidthBasis: TextWidthBasis.longestLine,
@@ -269,7 +270,7 @@ class _Textwidget extends State<Textwidget>
                       const SizedBox(width: 15),
                       GestureDetector(
                         onTap: () {
-                          _showTextProperties('''
+                          DialogUtils.showTextProperties(context, '''
                             Text(
                               'Yeh ek example hai',
                               strutStyle: StrutStyle(height: 5),
@@ -319,7 +320,7 @@ class _Textwidget extends State<Textwidget>
                       const SizedBox(width: 15),
                       GestureDetector(
                         onTap: () {
-                          _showTextProperties('''
+                          DialogUtils.showTextProperties(context, '''
                             RichText(
                               text: const TextSpan(
                                 text: "Hello",
@@ -369,7 +370,7 @@ class _Textwidget extends State<Textwidget>
                       const SizedBox(width: 10),
                       GestureDetector(
                         onTap: () {
-                          _showTextProperties('''
+                          DialogUtils.showTextProperties(context, '''
                             SlideTransition(
                               position: _offsetAnimation,
                               child: const Text(
@@ -409,7 +410,7 @@ class _Textwidget extends State<Textwidget>
                       ),
                       GestureDetector(
                         onTap: () {
-                          _showTextProperties('''
+                          DialogUtils.showTextProperties(context, '''
                         Text(
                         "semanticsLabel Text Widget..",
                         semanticsLabel:

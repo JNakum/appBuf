@@ -1,5 +1,7 @@
-import 'package:appbuf/screens/allwidget/textfieldwidget2.dart';
+// import 'package:appbuf/screens/allwidget/textfieldwidget2.dart';
+import 'package:appbuf/screens/customDropdown/customdropdown.dart';
 import 'package:flutter/material.dart';
+import 'package:appbuf/screens/customDialog/dialogutils.dart';
 
 class Textfieldwidget extends StatefulWidget {
   const Textfieldwidget({super.key});
@@ -17,19 +19,19 @@ class _Textfieldwidget extends State<Textfieldwidget> {
   // Drop Down List Code
   String? selectedValue;
 
-  final List<String> items = ['Textfieldwidget', 'Textfieldwidget2', 'Page 3'];
+  // final List<String> items = ['Textfieldwidget', 'Textfieldwidget2', 'Page 3'];
 
-  void navigateToPage(String page) {
-    switch (page) {
-      case 'Textfieldwidget':
-        Navigator.pushReplacement(context,
-            MaterialPageRoute(builder: (context) => const Textfieldwidget()));
-        break;
-      case 'Textfieldwidget2':
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const Textfieldwidget2()));
-    }
-  }
+  // void navigateToPage(String page) {
+  //   switch (page) {
+  //     case 'Textfieldwidget':
+  //       Navigator.push(context,
+  //           MaterialPageRoute(builder: (context) => const Textfieldwidget()));
+  //       break;
+  //     case 'Textfieldwidget2':
+  //       Navigator.push(context,
+  //           MaterialPageRoute(builder: (context) => const Textfieldwidget2()));
+  //   }
+  // }
 
   @override
   void initState() {
@@ -59,31 +61,42 @@ class _Textfieldwidget extends State<Textfieldwidget> {
     super.dispose();
   }
 
-  void _showTextProperties(String properties) {
-    showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: const Text("TextField Properties.."),
-            content: SingleChildScrollView(
-              child: Center(child: Text(properties)),
-            ),
-            actions: <Widget>[
-              TextButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  child: const Text("Cancel"))
-            ],
-          );
-        });
-  }
+  // void _showTextProperties(String properties) {
+  //   showDialog(
+  //       context: context,
+  //       builder: (BuildContext context) {
+  //         return AlertDialog(
+  //           title: const Text("TextField Properties.."),
+  //           content: SingleChildScrollView(
+  //             child: Center(child: Text(properties)),
+  //           ),
+  //           actions: <Widget>[
+  //             TextButton(
+  //                 onPressed: () {
+  //                   Navigator.of(context).pop();
+  //                 },
+  //                 child: const Text("Cancel"))
+  //           ],
+  //         );
+  //       });
+  // }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text("TextField Widget.."),
+        actions: [
+          CustomDropdown(
+            selectedValue: selectedValue,
+            onChanged: (String? newValue) {
+              setState(() {
+                selectedValue = newValue;
+                navigateToPage(context, newValue!);
+              });
+            },
+          ),
+        ],
       ),
       body: SafeArea(
         // SafeArea added here
@@ -97,38 +110,38 @@ class _Textfieldwidget extends State<Textfieldwidget> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Expanded(
-                        child: DropdownButton<String>(
-                          icon: const Icon(
-                            Icons.list,
-                            color: Colors.deepOrange,
-                          ),
-                          underline: const SizedBox(),
-                          iconSize: 50,
-                          // hint: const Text("Select A Page"),
-                          value: selectedValue,
-                          items: items
-                              .map<DropdownMenuItem<String>>((String value) {
-                            return DropdownMenuItem<String>(
-                              value: value,
-                              child: Text(value),
-                            );
-                          }).toList(),
-                          onChanged: (String? newValue) {
-                            setState(() {
-                              selectedValue = newValue;
-                              navigateToPage(newValue!);
-                            });
-                          },
-                          style: const TextStyle(color: Colors.deepOrange),
-                          isExpanded: true,
-                        ),
-                      ),
-                    ],
-                  ),
+                  // Row(
+                  //   mainAxisAlignment: MainAxisAlignment.end,
+                  //   children: [
+                  //     Expanded(
+                  //       child: DropdownButton<String>(
+                  //         icon: const Icon(
+                  //           Icons.list,
+                  //           color: Colors.deepOrange,
+                  //         ),
+                  //         underline: const SizedBox(),
+                  //         iconSize: 50,
+                  //         // hint: const Text("Select A Page"),
+                  //         value: selectedValue,
+                  //         items: items
+                  //             .map<DropdownMenuItem<String>>((String value) {
+                  //           return DropdownMenuItem<String>(
+                  //             value: value,
+                  //             child: Text(value),
+                  //           );
+                  //         }).toList(),
+                  //         onChanged: (String? newValue) {
+                  //           setState(() {
+                  //             selectedValue = newValue;
+                  //             navigateToPage(newValue!);
+                  //           });
+                  //         },
+                  //         style: const TextStyle(color: Colors.deepOrange),
+                  //         isExpanded: true,
+                  //       ),
+                  //     ),
+                  //   ],
+                  // ),
                   const SizedBox(
                     height: 20,
                   ),
@@ -152,7 +165,7 @@ class _Textfieldwidget extends State<Textfieldwidget> {
                           width: 15), // Space between TextField and Icon
                       GestureDetector(
                         onTap: () {
-                          _showTextProperties('''
+                          DialogUtils.showTextProperties(context, '''
                           TextField(
                         decoration: InputDecoration(
                           labelText: "Enter Your Text...maxLength=10",
@@ -202,7 +215,7 @@ class _Textfieldwidget extends State<Textfieldwidget> {
                       ),
                       GestureDetector(
                         onTap: () {
-                          _showTextProperties('''
+                          DialogUtils.showTextProperties(context, '''
                         TextField(
                         obscureText: _secureText,
                         obscuringCharacter: "*",
@@ -259,7 +272,7 @@ class _Textfieldwidget extends State<Textfieldwidget> {
                       ),
                       GestureDetector(
                         onTap: () {
-                          _showTextProperties('''
+                          DialogUtils.showTextProperties(context, '''
 TextField(
 decoration: InputDecoration(
 labelText: "Enter Your Text...",
@@ -308,7 +321,7 @@ BorderSide(color: Colors.blue, width: 5)),
                       ),
                       GestureDetector(
                         onTap: () {
-                          _showTextProperties('''
+                          DialogUtils.showTextProperties(context, '''
 TextField(
 decoration: InputDecoration(
 labelText: "Enter Your Name",
@@ -386,7 +399,7 @@ TextCapitalization.words, // Capitalize each word
                       ),
                       GestureDetector(
                         onTap: () {
-                          _showTextProperties('''
+                          DialogUtils.showTextProperties(context, '''
 Expanded(
 child: Container(
 padding: const EdgeInsets.all(8.0), // Inside padding
@@ -466,7 +479,7 @@ color: Colors.black, fontWeight: FontWeight.bold),
                       ),
                       GestureDetector(
                         onTap: () {
-                          _showTextProperties('''
+                          DialogUtils.showTextProperties(context, '''
 Flexible(
 child: TextField(
 // smartDashesType: SmartDashesType.enabled,
@@ -518,7 +531,7 @@ hintText: "Enter Some Text",
                       ),
                       GestureDetector(
                         onTap: () {
-                          _showTextProperties('''
+                          DialogUtils.showTextProperties(context, '''
  Expanded(
 child: TextField(
 onChanged: (value) {
@@ -582,7 +595,7 @@ hintText: "Type Text...."),
                       ),
                       GestureDetector(
                         onTap: () {
-                          _showTextProperties('''
+                          DialogUtils.showTextProperties(context, '''
 Flexible(
 child: TextField(
 controller: _lastInputController,
