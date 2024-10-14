@@ -56,3 +56,4 @@ app.*.map.json
 # Ignore FVM directory, but keep config.json
 .fvm/
 !.fvm/config.json
+.gitignore/

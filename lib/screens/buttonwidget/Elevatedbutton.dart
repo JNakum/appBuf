@@ -10,7 +10,7 @@ class Elevatedbutton extends StatefulWidget {
 
 class _ElevatedbuttonState extends State<Elevatedbutton> {
   // onFocusChange property ka use focusNode se
-  FocusNode _focusNode = FocusNode();
+  final FocusNode _focusNode = FocusNode();
 
   @override
   void initState() {
@@ -54,12 +54,12 @@ class _ElevatedbuttonState extends State<Elevatedbutton> {
                       onPressed: () {
                         _showBottomSheet(context);
                       },
-                      child: const Text("Button onPressed properties.."),
                       style: ElevatedButton.styleFrom(
                         padding: EdgeInsets.symmetric(
                             vertical: screenHeight * 0.02,
                             horizontal: screenWidth * 0.03),
                       ),
+                      child: const Text("Button onPressed properties.."),
                     ),
                   ),
                   SizedBox(
@@ -99,13 +99,13 @@ child: const Text("Button onPressed properties.."),
                           ScaffoldMessenger.of(context).showSnackBar(
                               const SnackBar(content: Text("Button Pressed!")));
                         },
-                        child: const Text("GestureDetector onLongPress "),
                         style: ElevatedButton.styleFrom(
                           padding: EdgeInsets.symmetric(
                             vertical: screenHeight * 0.02,
                             horizontal: screenWidth * 0.03,
                           ),
                         ),
+                        child: const Text("GestureDetector onLongPress "),
                       ),
                     ),
                   ),
@@ -157,13 +157,13 @@ child: const Text("GestureDetector onLongPress "),
                       onPressed: () {
                         print("Focus On button111 onFocusChange");
                       },
-                      child: Text("Focus On button111 onFocusChange"),
                       style: ElevatedButton.styleFrom(
                         padding: EdgeInsets.symmetric(
                           vertical: screenHeight * 0.02,
                           horizontal: screenWidth * 0.03,
                         ),
                       ),
+                      child: const Text("Focus On button111 onFocusChange"),
                     ),
                   ),
                   SizedBox(width: screenWidth * 0.02),
@@ -173,13 +173,13 @@ child: const Text("GestureDetector onLongPress "),
                       onPressed: () {
                         print("Button Pressed.");
                       },
-                      child: Text("Focus On."),
                       style: ElevatedButton.styleFrom(
                         padding: EdgeInsets.symmetric(
                           vertical: screenHeight * 0.02,
                           horizontal: screenWidth * 0.03,
                         ),
                       ),
+                      child: const Text("Focus On."),
                     ),
                   ),
                   SizedBox(
@@ -441,18 +441,70 @@ Add More 3 Button an some code.. And Other 3 Button autofocus: false,
               Row(
                 children: [
                   Flexible(
-                    child: ElevatedButton(
-                      onPressed: () {},
-                      child: Text("Click Me!.."),
-                      style: ElevatedButton.styleFrom(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: screenWidth * 0.03,
-                          vertical: screenHeight * 0.05,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(8),
+                      child: ElevatedButton(
+                        onPressed: () {},
+                        style: ElevatedButton.styleFrom(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: screenWidth * 0.03,
+                              vertical: screenHeight * 0.02,
+                            ),
+                            backgroundColor: Colors.brown,
+                            foregroundColor: Colors.white),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Icon(Icons.add),
+                            SizedBox(
+                              width: screenWidth * 0.02,
+                            ),
+                            const Text("Add !..")
+                          ],
                         ),
                       ),
                     ),
                   ),
+                  SizedBox(
+                    width: screenWidth * 0.02,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      DialogUtils.showTextProperties(context, '''
+Flexible(
+child: ClipRRect(
+borderRadius: BorderRadius.circular(8),
+child: ElevatedButton(
+onPressed: () {},
+style: ElevatedButton.styleFrom(
+padding: EdgeInsets.symmetric(
+horizontal: screenWidth * 0.03,
+vertical: screenHeight * 0.02,
+),
+backgroundColor: Colors.brown,
+foregroundColor: Colors.white),
+child: Row(
+mainAxisAlignment: MainAxisAlignment.center,
+children: [
+const Icon(Icons.add),
+SizedBox(
+width: screenWidth * 0.02,
+),
+const Text("Add !..")
+],
+),
+),
+),
+),
+''');
+                    },
+                    child: const Icon(Icons.info),
+                  ),
                 ],
+              ),
+
+              SizedBox(
+                height: screenHeight * 0.02,
               ),
             ],
           ),
