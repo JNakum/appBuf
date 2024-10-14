@@ -1,4 +1,4 @@
-import 'package:appbuf/screens/homescreen.dart';
+import 'package:appbuf/screens/homescreen/homescreen.dart';
 import 'package:flutter/material.dart';
 import 'package:appbuf/screens/allwidget/textfieldwidget.dart';
 import 'package:appbuf/screens/allwidget/textfieldwidget2.dart';
@@ -35,9 +35,10 @@ class CustomDropdown extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DropdownButton<String>(
+      padding: const EdgeInsets.all(16),
       icon: const Icon(
         Icons.list,
-        color: Colors.purple,
+        color: Colors.brown,
       ),
       underline: const SizedBox(),
       iconSize: 30,

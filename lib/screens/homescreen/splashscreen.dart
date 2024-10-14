@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:appbuf/screens/homescreen.dart';
+import 'package:appbuf/screens/homescreen/homescreen.dart';
 import 'package:flutter/material.dart';
 
 class Splashscreen extends StatefulWidget {

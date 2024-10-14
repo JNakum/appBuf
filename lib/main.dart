@@ -1,4 +1,4 @@
-import 'package:appbuf/screens/splashscreen.dart';
+import 'package:appbuf/screens/homescreen/splashscreen.dart';
 import 'package:flutter/material.dart';
 // import 'screens/homescreen.dart'; // Pehle yeh home_screen.dart tha, ab homescreen.dart hai
 

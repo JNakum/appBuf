@@ -12,8 +12,19 @@ class Textfieldwidget2 extends StatefulWidget {
   State<Textfieldwidget2> createState() => _Textfieldwidget2State();
 }
 
-class _Textfieldwidget2State extends State<Textfieldwidget2> {
+class _Textfieldwidget2State extends State<Textfieldwidget2>
+    with RestorationMixin {
   final _formKey = GlobalKey<FormState>();
+
+  // RestorationId
+  final RestorableString _textInput = RestorableString('');
+  @override
+  String get restorationId => 'text_field_example';
+
+  @override
+  void restoreState(RestorationBucket? oldBucket, bool initialRestore) {
+    registerForRestoration(_textInput, 'input_text');
+  }
 
   // Creating controllers for each TextFormField
 
@@ -50,6 +61,7 @@ class _Textfieldwidget2State extends State<Textfieldwidget2> {
   @override
   void dispose() {
     _buildCounterController.dispose(); // Controller ko dispose karna
+    _textInput.dispose();
     super.dispose();
   }
 
@@ -237,6 +249,7 @@ print("Valid Email => * inputEmail * ");
                 children: [
                   Expanded(
                     child: TextField(
+                      enableIMEPersonalizedLearning: false,
                       inputFormatters: [
                         LengthLimitingTextInputFormatter(10),
                         UpperCaseTextFormatter()
@@ -573,6 +586,221 @@ child: const Icon(Icons.info),
 ''');
                     },
                     child: const Icon(Icons.info),
+                  ),
+                ],
+              ),
+
+              const SizedBox(
+                height: 20,
+              ),
+
+              Row(
+                children: [
+                  Expanded(
+                    child: TextField(
+                      onChanged: (value) {
+                        _textInput.value;
+                      },
+                      decoration: const InputDecoration(
+                        hintText: "Enter Text Use restorationId",
+                        labelText: "Enter Text Use restorationId",
+                      ),
+                      controller: TextEditingController(text: _textInput.value),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 5,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      DialogUtils.showTextProperties(context, '''
+Expanded(
+child: TextField(
+onChanged: (value) {
+_textInput.value;
+},
+decoration: const InputDecoration(
+hintText: "Enter Text Use restorationId",
+labelText: "Enter Text Use restorationId",
+),
+controller: TextEditingController(text: _textInput.value),
+),
+),
+**************************************
+// RestorationId
+  final RestorableString _textInput = RestorableString('');
+  @override
+  String get restorationId => 'text_field_example';
+
+  @override
+  void restoreState(RestorationBucket? oldBucket, bool initialRestore) {
+    registerForRestoration(_textInput, 'input_text');
+  }
+**************************************
+
+''');
+                    },
+                    child: const Icon(Icons.info),
+                  ),
+                ],
+              ),
+
+              const SizedBox(
+                height: 20,
+              ),
+
+              Row(
+                children: [
+                  Expanded(
+                    child: TextField(
+                      contextMenuBuilder: (BuildContext context,
+                          EditableTextState editableTextState) {
+                        return AdaptiveTextSelectionToolbar(
+                          anchors: editableTextState.contextMenuAnchors,
+                          children: [
+                            TextButton(
+                              onPressed: () {
+                                editableTextState.copySelection(
+                                    SelectionChangedCause.toolbar);
+                              },
+                              child: const Text('Custom Copy'),
+                            ),
+                            TextButton(
+                              onPressed: () {
+                                editableTextState.cutSelection(
+                                    SelectionChangedCause.toolbar);
+                              },
+                              child: const Text('Custom Cut'),
+                            ),
+                            TextButton(
+                              onPressed: () {
+                                editableTextState
+                                    .pasteText(SelectionChangedCause.toolbar);
+                              },
+                              child: const Text('Custom Paste'),
+                            ),
+                            TextButton(
+                              onPressed: () {
+                                editableTextState
+                                    .selectAll(SelectionChangedCause.toolbar);
+                              },
+                              child: const Text('Select All'),
+                            ),
+                          ],
+                        );
+                      },
+                      decoration: const InputDecoration(
+                        hintText: 'Long press in text field..',
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 5,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      DialogUtils.showTextProperties(context, '''
+Expanded(
+child: TextField(
+contextMenuBuilder: (BuildContext context,
+EditableTextState editableTextState) {
+return AdaptiveTextSelectionToolbar(
+anchors: editableTextState.contextMenuAnchors,
+children: [
+TextButton(
+onPressed: () {
+editableTextState.copySelection(
+SelectionChangedCause.toolbar);
+},
+child: const Text('Custom Copy'),
+),
+TextButton(
+onPressed: () {
+editableTextState.cutSelection(
+SelectionChangedCause.toolbar);
+},
+child: const Text('Custom Cut'),
+),
+TextButton(
+onPressed: () {
+editableTextState
+.pasteText(SelectionChangedCause.toolbar);
+},
+child: const Text('Custom Paste'),
+),
+TextButton(
+onPressed: () {
+editableTextState
+.selectAll(SelectionChangedCause.toolbar);
+},
+child: const Text('Select All'),
+),
+],
+);
+},
+decoration: const InputDecoration(
+hintText: 'Long press in text field..',
+),
+),
+),
+
+''');
+                    },
+                    child: const Icon(Icons.info),
+                  ),
+                ],
+              ),
+
+              const SizedBox(
+                height: 20,
+              ),
+
+              Row(
+                children: [
+                  const Expanded(
+                    child: TextField(
+                      canRequestFocus: false,
+                      decoration: InputDecoration(
+                        labelText: "canRequestFocus Only Past .. and select",
+                        hintText: "canRequestFocus Only Past .. and select",
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 5,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      DialogUtils.showTextProperties(context, '''
+Expanded(
+child: TextField(
+canRequestFocus: false,
+decoration: InputDecoration(
+labelText: "canRequestFocus Only Past .. and select",
+hintText: "canRequestFocus Only Past .. and select",
+),
+),
+),
+
+''');
+                    },
+                    child: const Icon(Icons.info),
+                  ),
+                ],
+              ),
+
+              const SizedBox(
+                height: 20,
+              ),
+
+              const Row(
+                children: [
+                  Expanded(
+                    child: TextField(
+                      // spellCheckConfiguration: SpellCheckConfiguration(spellCheckEnabled: false,), // old version are not suppoted
+                      decoration: InputDecoration(
+                          labelText: "spellCheckEnabled Speling Check"),
+                    ),
                   ),
                 ],
               ),

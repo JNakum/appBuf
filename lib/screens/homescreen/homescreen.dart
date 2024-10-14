@@ -1,6 +1,7 @@
 import 'package:appbuf/screens/allwidget/textfieldwidget.dart';
 // import 'package:appbuf/screens/allwidget/textfieldwidget2.dart';
 import 'package:appbuf/screens/allwidget/textwidget.dart';
+import 'package:appbuf/screens/buttonwidget/Elevatedbutton.dart';
 import 'package:appbuf/screens/customDropdown/customdropdown.dart';
 import 'package:flutter/material.dart';
 
@@ -102,6 +103,23 @@ class _HomescreenState extends State<Homescreen> {
                   context,
                   MaterialPageRoute(
                       builder: (context) => const Textfieldwidget()),
+                );
+              },
+            ),
+            ListTile(
+              leading: const Icon(
+                Icons.elevator_rounded,
+                color: Colors.pinkAccent,
+              ),
+              title: const Text(
+                "ElevatedButton",
+                style: TextStyle(color: Colors.black),
+              ),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const Elevatedbutton()),
                 );
               },
             ),

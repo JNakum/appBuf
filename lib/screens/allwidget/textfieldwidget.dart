@@ -84,6 +84,8 @@ class _Textfieldwidget extends State<Textfieldwidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor:
+          const Color.fromARGB(255, 255, 191, 0), // Set background color
       appBar: AppBar(
         title: const Text("TextField Widget.."),
         actions: [
@@ -104,7 +106,7 @@ class _Textfieldwidget extends State<Textfieldwidget> {
           // Scrolling functionality added here
           child: Center(
             child: Container(
-              color: const Color.fromARGB(255, 255, 191, 0),
+              // color: const Color.fromARGB(255, 255, 191, 0),
               padding: const EdgeInsets.all(16.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
