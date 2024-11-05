@@ -56,8 +56,9 @@ class _ElevatedbuttonState extends State<Elevatedbutton> {
                       },
                       style: ElevatedButton.styleFrom(
                         padding: EdgeInsets.symmetric(
-                            vertical: screenHeight * 0.02,
-                            horizontal: screenWidth * 0.03),
+                          vertical: screenHeight * 0.02,
+                          horizontal: screenWidth * 0.03,
+                        ),
                       ),
                       child: const Text("Button onPressed properties.."),
                     ),
@@ -228,7 +229,7 @@ child: const Text("Focus On."),
               Row(
                 children: [
                   Expanded(
-                    child: Container(
+                    child: SizedBox(
                       width: double.infinity,
                       height: screenHeight * 0.07,
                       child: ElevatedButton(
